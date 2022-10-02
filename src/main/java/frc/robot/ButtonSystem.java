@@ -8,7 +8,7 @@ public class ButtonSystem {
 Joystick joystick = new Joystick(0);
 
 
-    public boolean moveFoward(){
+    public boolean moveForward(){
         return joystick.getRawButton(4);
     }
 
