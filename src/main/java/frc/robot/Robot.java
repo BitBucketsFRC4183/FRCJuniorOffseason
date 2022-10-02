@@ -25,10 +25,13 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class Robot extends TimedRobot
 {
+
   DriveSubsystem driveSubsystem;
   WPI_TalonSRX motor1 = new WPI_TalonSRX(1);
   Joystick joystick = new Joystick(0);
 
+    @Override
+    public void teleopPeriodic() {
 
 
   @Override
@@ -46,5 +49,9 @@ public class Robot extends TimedRobot
       motor1.set(0);
     }
 
-  }
+        if(!joystick.getRawButton(3)) {
+            motor1.set(0);
+        }
+
+    }
 }
