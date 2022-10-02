@@ -9,21 +9,18 @@ public class DriveSubsystem extends SubsystemBase {
     // motor device number 2 (topRight motor) --- controlled by "B" on the xBox Controller
     // motor device number 3 (topLeft motor) turns it  lefts --- controlled by "X" on the xBox Controller
     // motor device number 4 (bottomLeft motor) --- controlled by "Y" on the xBox Controller
-   final ButtonSystem buttonSystem = new ButtonSystem();
+    final ButtonSystem buttonSystem = new ButtonSystem();
     WPI_TalonSRX topLeft = new WPI_TalonSRX(3);
     WPI_TalonSRX topRight = new WPI_TalonSRX(2);
     WPI_TalonSRX bottomLeft = new WPI_TalonSRX(4);
     WPI_TalonSRX bottomRight = new WPI_TalonSRX(1);
 
 
-    Joystick joystick;
-
-
     public void periodic() {
 
-       if (buttonSystem.moveForward()) {
-           forward();
-       }
+        if (buttonSystem.moveForward()) {
+            forward();
+        }
 
         if (buttonSystem.moveLeft()) {
             turnLeft();

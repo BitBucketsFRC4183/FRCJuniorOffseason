@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class ButtonSystem {
-Joystick joystick = new Joystick(0);
+    Joystick joystick = new Joystick(0);
 
 
     public boolean moveForward(){
