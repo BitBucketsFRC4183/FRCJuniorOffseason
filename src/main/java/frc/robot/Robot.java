@@ -25,15 +25,11 @@ public class Robot extends TimedRobot
   WPI_TalonSRX motor1 = new WPI_TalonSRX(1);
   Joystick joystick = new Joystick(0);
 
+  ButtonSystem buttonSystem = new ButtonSystem();
+  DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   @Override
   public void teleopPeriodic() {
-    if(joystick.getRawButton(3)) {
-      motor1.set(0.5);;
-    }
-    if(!joystick.getRawButton(3)) {
-      motor1.set(0);
-    }
-
+    driveSubsystem.periodic();
   }
 }
