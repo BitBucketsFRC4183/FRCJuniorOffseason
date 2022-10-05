@@ -1,6 +1,3 @@
-//william, scott - drive system
-
-
 // Copyright (c) FIRST and other WPILib contributors.
 
 // Open Source Software; you can modify and/or share it under the terms of
@@ -25,33 +22,14 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class Robot extends TimedRobot
 {
-
-  DriveSubsystem driveSubsystem;
   WPI_TalonSRX motor1 = new WPI_TalonSRX(1);
   Joystick joystick = new Joystick(0);
 
-    @Override
-    public void teleopPeriodic() {
+  ButtonSystem buttonSystem = new ButtonSystem();
+  DriveSubsystem driveSubsystem = new DriveSubsystem();
 
-
-  @Override
-  public void robotInit() {
-    driveSubsystem = new DriveSubsystem();
-
-
-  }
   @Override
   public void teleopPeriodic() {
-    if(joystick.getRawButton(3)) {
-      motor1.set(0.5);;
-    }
-    if(!joystick.getRawButton(3)) {
-      motor1.set(0);
-    }
-
-        if(!joystick.getRawButton(3)) {
-            motor1.set(0);
-        }
-
-    }
+    driveSubsystem.periodic();
+  }
 }
