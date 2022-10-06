@@ -24,12 +24,17 @@ public class Robot extends TimedRobot
 {
 
   ButtonSystem buttonSystem = new ButtonSystem();
-  DriveSubsystem driveSubsystem = new DriveSubsystem();
+  DriveSubsystem driveSubsystem = new DriveSubsystem(buttonSystem);
 
   @Override
   public void teleopPeriodic() {
     driveSubsystem.periodic();
     System.out.println(buttonSystem.getX());
     System.out.println(buttonSystem.getY());
+  }
+
+  @Override
+  public void teleopInit() {
+    driveSubsystem.init();
   }
 }
