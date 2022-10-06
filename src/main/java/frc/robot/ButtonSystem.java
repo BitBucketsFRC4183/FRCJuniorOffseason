@@ -12,24 +12,16 @@ public class ButtonSystem {
     // motor device number 2 (topRight motor)
     // motor device number 3 (topLeft motor)
     // motor device number 4 (bottomLeft motor)
-    //moveForward is activated by button "Y"
-    //moveLeft activated by button "X"
-    //moveRight activated by button "B"
-    //moveBackwards activated by button "A"
 
-    public boolean moveForward(){
-        return joystick.getRawButton(4);
+
+    public double getFB() {
+        return joystick.getRawAxis(5);
     }
 
-    public boolean moveBackwards(){
-        return joystick.getRawButton(1);
+    public double getLR(){
+        return joystick.getRawAxis(4);
     }
-    public boolean moveLeft(){
-        return joystick.getRawButton(3);
-    }
-    public boolean moveRight(){
-        return joystick.getRawButton(2);
-    }
+
 
 }
 

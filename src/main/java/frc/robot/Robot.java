@@ -26,10 +26,15 @@ public class Robot extends TimedRobot
   Joystick joystick = new Joystick(0);
 
   ButtonSystem buttonSystem = new ButtonSystem();
-  DriveSubsystem driveSubsystem = new DriveSubsystem();
+  DriveSubsystem driveSubsystem = new DriveSubsystem(buttonSystem);
 
   @Override
   public void teleopPeriodic() {
     driveSubsystem.periodic();
+  }
+
+  @Override
+  public void teleopInit() {
+    driveSubsystem.init();
   }
 }
