@@ -45,7 +45,7 @@ public class ButtonSystem {
 
     public double getY()
     {
-        return joystick.getRawAxis(5);
+        return joystick.getRawAxis(4);
     }
 
 }
