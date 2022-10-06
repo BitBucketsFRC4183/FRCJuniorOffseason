@@ -36,13 +36,13 @@ public class ButtonSystem {
 
 // getX and getY shifts between -1 and 1
 
-    // getX is on the left and makes robot move up and down by shifting up and down
-    public double getX() {
-        return joystick.getRawAxis(1);
+    // getFB is on the right and makes robot forwards and backwards by shifting up and down
+    public double getFB() {
+        return joystick.getRawAxis(5);
     }
 
-    // getY is on the right and makes robot move left and right by shifting left and right
-    public double getY()
+    // getLR is on the right and makes robot move left and right by shifting left and right
+    public double getLR()
     {
         return joystick.getRawAxis(4);
     }
