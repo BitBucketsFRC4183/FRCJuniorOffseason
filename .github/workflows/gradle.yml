@@ -14,8 +14,8 @@ on:
   pull_request:
     branches:
       - "master"
-#    paths:
-#      - "src/main/java/frc/robot/**.java"
+    paths:
+      - "src/main/java/frc.robot/**.java"
 
 permissions:
   contents: read
