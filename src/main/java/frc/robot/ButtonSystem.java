@@ -38,7 +38,7 @@ public class ButtonSystem {
 
     // getFB is on the right and makes robot forwards and backwards by shifting up and down
     public double getFB() {
-        return joystick.getRawAxis(5);
+        return joystick.getRawAxis(1);
     }
 
     // getLR is on the right and makes robot move left and right by shifting left and right
