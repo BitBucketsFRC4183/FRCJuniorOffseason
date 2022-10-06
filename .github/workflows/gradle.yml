@@ -10,12 +10,12 @@ name: Java CI with Gradle
 on:
   push:
     paths:
-      - "**.java"
+      - "src/main/java/frc/robot/**.java"
   pull_request:
     branches:
       - "master"
     paths:
-      - "**.java"
+      - "src/main/java/frc/robot/**.java"
 
 permissions:
   contents: read
