@@ -14,11 +14,31 @@ public class ButtonSystem {
     // motor device number 4 (bottomLeft motor)
 
 
+    /*
+
+    public boolean moveForward(){
+        return joystick.getRawButton(4);
+    }
+
     public double getFB() {
         return joystick.getRawAxis(5);
     }
 
     public double getLR(){
+        return joystick.getRawAxis(4);
+    }
+    */
+
+// getX and getY shifts between -1 and 1
+
+    // getFB is on the right and makes robot forwards and backwards by shifting up and down
+    public double getFB() {
+        return joystick.getRawAxis(1);
+    }
+
+    // getLR is on the right and makes robot move left and right by shifting left and right
+    public double getLR()
+    {
         return joystick.getRawAxis(4);
     }
 

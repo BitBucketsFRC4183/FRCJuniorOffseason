@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
+
 public class DriveSubsystem extends SubsystemBase {
     /*
     motor device number 1 (bottomRight motor)
@@ -23,6 +24,7 @@ public class DriveSubsystem extends SubsystemBase {
     public DriveSubsystem(ButtonSystem buttonSystem) {
         this.buttonSystem = buttonSystem;
     }
+
 
 
     public void init() {
@@ -74,6 +76,7 @@ public class DriveSubsystem extends SubsystemBase {
         bottomRight.set(power);
         bottomLeft.set(power/1.5);
     }
+
 
 
 
