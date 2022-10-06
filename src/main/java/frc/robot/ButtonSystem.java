@@ -17,6 +17,8 @@ public class ButtonSystem {
     //moveRight activated by button "B"
     //moveBackwards activated by button "A"
 
+    /*
+
     public boolean moveForward(){
         return joystick.getRawButton(4);
     }
@@ -29,6 +31,21 @@ public class ButtonSystem {
     }
     public boolean moveRight(){
         return joystick.getRawButton(2);
+    }
+    */
+
+// getX and getY shifts between -1 and 1
+
+    // getX is on the left and makes robot move up and down
+    public double getX() {
+        return joystick.getRawAxis(1);
+    }
+
+    // getY is on the right and makes robot move left and right
+
+    public double getY()
+    {
+        return joystick.getRawAxis(5);
     }
 
 }
