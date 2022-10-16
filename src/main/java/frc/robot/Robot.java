@@ -29,8 +29,6 @@ public class Robot extends TimedRobot
   @Override
   public void teleopPeriodic() {
     driveSubsystem.periodic();
-    System.out.println(buttonSystem.getX());
-    System.out.println(buttonSystem.getY());
   }
 
   @Override
