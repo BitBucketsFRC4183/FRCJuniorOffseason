@@ -22,14 +22,16 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class Robot extends TimedRobot
 {
-  WPI_TalonSRX motor1 = new WPI_TalonSRX(1);
-  Joystick joystick = new Joystick(0);
-
   ButtonSystem buttonSystem = new ButtonSystem();
-  DriveSubsystem driveSubsystem = new DriveSubsystem();
+  DriveSubsystem driveSubsystem = new DriveSubsystem(buttonSystem);
 
   @Override
   public void teleopPeriodic() {
     driveSubsystem.periodic();
+  }
+
+  @Override
+  public void teleopInit() {
+    driveSubsystem.init();
   }
 }
