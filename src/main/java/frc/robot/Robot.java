@@ -22,7 +22,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class Robot extends TimedRobot
 {
-  //please work
   ButtonSystem buttonSystem = new ButtonSystem();
   DriveSubsystem driveSubsystem = new DriveSubsystem(buttonSystem);
 
