@@ -34,7 +34,7 @@ public class ButtonSystem {
     }
     */
 
-// getX and getY shifts between -1 and 1
+// getFB and getLR shifts between -1 and 1
 
     // getFB is on the right and makes robot forwards and backwards by shifting up and down
     public double getFB() {
