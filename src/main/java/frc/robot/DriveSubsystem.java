@@ -34,7 +34,6 @@ public class DriveSubsystem extends SubsystemBase {
 
         move(buttonSystem.getFB());
 
-/*
         if(buttonSystem.getLR() > 0.1)
         {
             turnRight(buttonSystem.getLR());
@@ -46,8 +45,6 @@ public class DriveSubsystem extends SubsystemBase {
             turnLeft(buttonSystem.getLR());
         }
 
-
- */
 
 
     }
@@ -66,7 +63,7 @@ public class DriveSubsystem extends SubsystemBase {
     public void turnRight(double power)
     {
         topLeft.set(power);
-        topRight.set(ower/2);
+        topRight.set(power/2);
         bottomRight.set(power/2);
         bottomLeft.set(power);
     }
