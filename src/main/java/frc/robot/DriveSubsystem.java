@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
-
+// battery is at back
 public class DriveSubsystem extends SubsystemBase {
 
     final ButtonSystem buttonSystem;
@@ -22,8 +22,8 @@ public class DriveSubsystem extends SubsystemBase {
 
 
     public void init() {
-        topLeft.setInverted(true);
-        bottomLeft.setInverted(true);
+        topRight.setInverted(true);
+        bottomRight.setInverted(true);
     }
 
 
@@ -32,8 +32,15 @@ public class DriveSubsystem extends SubsystemBase {
     public void periodic() {
 
 
-        move(buttonSystem.getFB());
+        if (buttonSystem.getFB() > 0.1 || buttonSystem.getFB() < -0.1)
+        {
+            move(buttonSystem.getFB());
+        }
+        else {
+            move(0);
+        }
 
+/*
         if(buttonSystem.getLR() > 0.1)
         {
             turnRight(buttonSystem.getLR());
@@ -44,6 +51,10 @@ public class DriveSubsystem extends SubsystemBase {
         {
             turnLeft(buttonSystem.getLR());
         }
+
+ */
+
+
 
 
 
