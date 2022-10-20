@@ -1,7 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class ButtonSystem {
@@ -47,6 +47,15 @@ public class ButtonSystem {
     {
         return joystick.getRawAxis(4);
     }
+
+    public boolean isResetGyroPressed() {
+        return true;
+    }
+
+
+
+
+
 
 }
 
