@@ -11,6 +11,7 @@ on:
   push:
     paths:
       - "src/main/java/frc.robot/**.java"
+      - "src/main/java/frc.robot/command/**.java"
   pull_request:
 #    branches:
 #      - "master"
