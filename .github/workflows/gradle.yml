@@ -12,8 +12,8 @@ on:
     paths:
       - "src/main/java/frc.robot/**.java"
   pull_request:
-    branches:
-      - "master"
+#    branches:
+#      - "master"
     paths:
       - "src/main/java/frc.robot/**.java"
 
