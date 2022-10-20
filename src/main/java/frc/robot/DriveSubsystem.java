@@ -35,25 +35,7 @@ public class DriveSubsystem extends SubsystemBase {
 
 
 
-    public void periodic() {
-
-        move(buttonSystem.getFB());
-
-        if(buttonSystem.getLR() > 0)
-        {
-            turnRight(buttonSystem.getLR());
-        }
-
-
-        if(buttonSystem.getLR() < 0)
-        {
-            turnLeft(buttonSystem.getLR());
-        }
-    }
-
-
-
-    public void move(double power)
+       public void move(double power)
     {
         topLeft.set(power);
         topRight.set(power);

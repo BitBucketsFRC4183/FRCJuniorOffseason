@@ -20,6 +20,6 @@ public class MoveRight extends CommandBase{
 
     @Override
     public void execute() {
-        driveSubsystem.turnRight();
+        driveSubsystem.turnRight(2.0);
     }
 }

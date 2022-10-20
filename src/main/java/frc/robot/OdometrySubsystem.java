@@ -55,7 +55,7 @@ public class OdometrySubsystem extends SubsystemBase {
             gyroangle = 360 + gyroangle;
         if (gyroangle > 360)
             gyroangle -= 360;
-        //field.setRobotPose( Rotation2d );
+        field.setRobotPose(odometry.getPoseMeters());
 
     }
 
