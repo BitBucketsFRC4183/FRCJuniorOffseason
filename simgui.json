@@ -1,7 +1,41 @@
 {
   "HALProvider": {
     "Other Devices": {
+      "Talon SRX[1]": {
+        "header": {
+          "open": true
+        },
+        "name": "bottomRight"
+      },
+      "Talon SRX[2]": {
+        "header": {
+          "open": true
+        },
+        "name": "bottomLeft"
+      },
+      "Talon SRX[2]/Quad Encoder": {
+        "header": {
+          "open": true
+        }
+      },
       "Talon SRX[3]": {
+        "header": {
+          "open": true
+        },
+        "name": "topLeft"
+      },
+      "Talon SRX[3]/Quad Encoder": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[4]": {
+        "header": {
+          "open": true
+        },
+        "name": "topRight"
+      },
+      "Talon SRX[4]/Quad Encoder": {
         "header": {
           "open": true
         }
