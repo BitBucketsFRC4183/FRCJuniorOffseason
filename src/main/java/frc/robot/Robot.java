@@ -25,6 +25,14 @@ public class Robot extends TimedRobot
   ButtonSystem buttonSystem = new ButtonSystem();
   DriveSubsystem driveSubsystem = new DriveSubsystem(buttonSystem);
 
+  OdometrySubsystem odometrySubsystem = new OdometrySubsystem();
+
+  @Override
+  public void robotInit() {
+    odometrySubsystem.robotInit();
+
+  }
+
   @Override
   public void teleopPeriodic() {
     driveSubsystem.periodic();
@@ -33,5 +41,7 @@ public class Robot extends TimedRobot
   @Override
   public void teleopInit() {
     driveSubsystem.init();
+
+
   }
 }

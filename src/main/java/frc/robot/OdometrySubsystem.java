@@ -38,7 +38,6 @@ public class OdometrySubsystem extends SubsystemBase {
     AHRS gyro = new AHRS(SPI.Port.kMXP);
 
 
-
     Field2d field = new Field2d();
 
     @Override
@@ -49,18 +48,22 @@ public class OdometrySubsystem extends SubsystemBase {
         SmartDashboard.putNumber("topleftpose", bottomright.getSelectedSensorPosition());
         SmartDashboard.putNumber("gyroangle", gyroangle);
 
+
         SmartDashboard.putNumber("gyroangleactual", gyro.getAngle());
         gyroangle = gyro.getAngle();
         if (gyroangle < 0 )
             gyroangle = 360 + gyroangle;
         if (gyroangle > 360)
             gyroangle -= 360;
+
+        odometry.update(Rotation2d.fromDegrees(gyroangle), topleft.getSelectedSensorPosition(), topright.getSelectedSensorPosition());
         field.setRobotPose(odometry.getPoseMeters());
 
     }
 
 
     public void robotInit() {
+        gyro.reset();
         topleft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         bottomleft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         topright.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
