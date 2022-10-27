@@ -30,7 +30,7 @@ public class DriveSubsystem extends SubsystemBase {
 
 
     public void periodic() {
-
+        buttonSystem.getFB();
 
         if (buttonSystem.getFB() > 0.1 || buttonSystem.getFB() < -0.1)
         {
