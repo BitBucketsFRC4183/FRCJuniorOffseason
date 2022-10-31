@@ -8,6 +8,27 @@ public class ButtonSystem {
     //tezt 4
     Joystick joystick = new Joystick(0);
 
+/*drive button testing
+    /**
+     * getFB shifts between -1 and 1 (-1 = forward; 1 = forward)
+     * @return forward backward axis
+     */
+    public double getFB() {
+        if (joystick.getRawAxis(5) > 0.1 || joystick.getRawAxis(5) < -0.1) {
+            return joystick.getRawAxis(5);
+        }
+        else {
+            return 0;
+        }
+    }
+
+    /**
+     * getLR shifts between -1 and 1 (-1 = left; 1 = right)
+     * @return getLR is on the right and makes robot move left and right by shifting left and right
+    */
+    public double getLR()
+    
+drive button testing*/
 
     // motor device number 1 (bottomRight motor)
     // motor device number 2 (topRight motor)
@@ -44,8 +65,14 @@ public class ButtonSystem {
 
     // getY is on the right and makes robot move left and right by shifting left and right
     public double getY()
+
     {
-        return joystick.getRawAxis(4);
+        if (joystick.getRawAxis(4) > 0.1 || joystick.getRawAxis(4) < -0.1) {
+            return joystick.getRawAxis(4);
+        }
+        else {
+            return 0;
+        }
     }
 
     public boolean isResetGyroPressed() {
@@ -58,4 +85,3 @@ public class ButtonSystem {
 
 
 }
-
