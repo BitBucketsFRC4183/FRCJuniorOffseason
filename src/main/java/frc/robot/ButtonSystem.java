@@ -12,7 +12,12 @@ public class ButtonSystem {
      * @return forward backward axis
      */
     public double getFB() {
-        return joystick.getRawAxis(5);
+        if (joystick.getRawAxis(5) > 0.1 || joystick.getRawAxis(5) < -0.1) {
+            return joystick.getRawAxis(5);
+        }
+        else {
+            return 0;
+        }
     }
 
     /**
@@ -21,7 +26,12 @@ public class ButtonSystem {
     */
     public double getLR()
     {
-        return joystick.getRawAxis(4);
+        if (joystick.getRawAxis(4) > 0.1 || joystick.getRawAxis(4) < -0.1) {
+            return joystick.getRawAxis(4);
+        }
+        else {
+            return 0;
+        }
     }
 
 
