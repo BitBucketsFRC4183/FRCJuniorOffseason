@@ -41,6 +41,7 @@ public class DriveSubsystem extends SubsystemBase {
 
 
 
+/* drive button
     public void periodic() {
 
 
@@ -48,6 +49,14 @@ public class DriveSubsystem extends SubsystemBase {
         // Arcade drive with a given forward and turn rate
         drive.arcadeDrive(buttonSystem.getFB(), -buttonSystem.getLR());
 
+drive button*/
+       public void move(double power)
+    {
+        topLeft.set(power);
+        topRight.set(power);
+        bottomRight.set(power);
+        bottomLeft.set(power);
+    }
 
 
     }
