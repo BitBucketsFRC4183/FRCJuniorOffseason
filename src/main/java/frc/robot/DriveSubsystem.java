@@ -1,6 +1,7 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -13,8 +14,12 @@ public class DriveSubsystem extends SubsystemBase {
 
     final ButtonSystem buttonSystem;
 
+    SlewRateLimiter filterFB = new SlewRateLimiter(5); //high number -> accelerates faster
+    SlewRateLimiter filterLR = new SlewRateLimiter(5); //low number -> starts to not really move (0.1 makes it not move at all)
+
     WPI_TalonSRX topRight = new WPI_TalonSRX(4);
     WPI_TalonSRX bottomRight = new WPI_TalonSRX(1);
+
 
     MotorControllerGroup right = new MotorControllerGroup(topRight, bottomRight);
 
@@ -46,8 +51,8 @@ public class DriveSubsystem extends SubsystemBase {
 
 
         // Arcade drive with a given forward and turn rate
-        drive.arcadeDrive(buttonSystem.getFB(), -buttonSystem.getLR());
-
+        drive.arcadeDrive(filterFB.calculate(buttonSystem.getFB()*0.75), filterLR.calculate(-buttonSystem.getLR()*0.75));
+        //drive.tankDrive(filterFB.calculate(buttonSystem.getFB()*0.75), filterLR.calculate(-buttonSystem.getLR()*0.75));
 
 
     }
