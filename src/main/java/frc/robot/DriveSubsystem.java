@@ -1,25 +1,37 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 
+// battery is at back
 public class DriveSubsystem extends SubsystemBase {
-    /*
-    motor device number 1 (bottomRight motor)
-    motor device number 2 (topRight motor)
-    motor device number 3 (topLeft motor)
-    motor device number 4 (bottomLeft motor)
-    */
 
     final ButtonSystem buttonSystem;
-    WPI_TalonSRX topLeft = new WPI_TalonSRX(3);
-    WPI_TalonSRX topRight = new WPI_TalonSRX(2);
-    WPI_TalonSRX bottomLeft = new WPI_TalonSRX(4);
+
+    SlewRateLimiter filterFB = new SlewRateLimiter(5); //high number -> accelerates faster
+    SlewRateLimiter filterLR = new SlewRateLimiter(5); //low number -> starts to not really move (0.1 makes it not move at all)
+
+    WPI_TalonSRX topRight = new WPI_TalonSRX(4);
     WPI_TalonSRX bottomRight = new WPI_TalonSRX(1);
+
+
+    MotorControllerGroup right = new MotorControllerGroup(topRight, bottomRight);
+
+    WPI_TalonSRX topLeft = new WPI_TalonSRX(3);
+    WPI_TalonSRX bottomLeft = new WPI_TalonSRX(2);
+
+    MotorControllerGroup left = new MotorControllerGroup(topLeft, bottomLeft);
+
+
+    DifferentialDrive drive = new DifferentialDrive(left, right);
+
 
     public DriveSubsystem(ButtonSystem buttonSystem) {
         this.buttonSystem = buttonSystem;
@@ -28,8 +40,8 @@ public class DriveSubsystem extends SubsystemBase {
 
 
     public void init() {
-       // topLeft.setInverted(true);
-        //bottomLeft.setInverted(true);
+        topRight.setInverted(true);
+        bottomRight.setInverted(true);
     }
 
 
@@ -37,49 +49,14 @@ public class DriveSubsystem extends SubsystemBase {
 
     public void periodic() {
 
-        move(buttonSystem.getFB());
-
-        if(buttonSystem.getLR() > 0)
-        {
-            turnRight(buttonSystem.getLR());
-        }
 
 
-        if(buttonSystem.getLR() < 0)
-        {
-            turnLeft(buttonSystem.getLR());
-        }
+        // Arcade drive with a given forward and turn rate
+        drive.arcadeDrive(filterFB.calculate(buttonSystem.getFB()*0.75), filterLR.calculate(-buttonSystem.getLR()*0.75));
+        //drive.tankDrive(filterFB.calculate(buttonSystem.getFB()*0.75), filterLR.calculate(-buttonSystem.getLR()*0.75));
+
+
     }
-
-
-
-    public void move(double power)
-    {
-        topLeft.set(power);
-        topRight.set(power);
-        bottomRight.set(power);
-        bottomLeft.set(power);
-    }
-
-    public void turnRight(double power)
-    {
-        topLeft.set(power);
-        topRight.set(power/1.5);
-        bottomRight.set(power/1.5);
-        bottomLeft.set(power);
-    }
-
-    public void turnLeft(double power)
-    {
-        topLeft.set(power/1.5);
-        topRight.set(power);
-        bottomRight.set(power);
-        bottomLeft.set(power/1.5);
-    }
-
-
-
-
 
 
 }

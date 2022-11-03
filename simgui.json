@@ -1,7 +1,41 @@
 {
   "HALProvider": {
     "Other Devices": {
+      "Talon SRX[1]": {
+        "header": {
+          "open": true
+        },
+        "name": "bottomRight"
+      },
+      "Talon SRX[2]": {
+        "header": {
+          "open": true
+        },
+        "name": "bottomLeft"
+      },
+      "Talon SRX[2]/Quad Encoder": {
+        "header": {
+          "open": true
+        }
+      },
       "Talon SRX[3]": {
+        "header": {
+          "open": true
+        },
+        "name": "topLeft"
+      },
+      "Talon SRX[3]/Quad Encoder": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[4]": {
+        "header": {
+          "open": true
+        },
+        "name": "topRight"
+      },
+      "Talon SRX[4]/Quad Encoder": {
         "header": {
           "open": true
         }
@@ -12,11 +46,33 @@
     "types": {
       "/FMSInfo": "FMSInfo",
       "/LiveWindow/DriveSubsystem": "Subsystem",
+      "/LiveWindow/TestingDriveSubSystem": "Subsystem",
+      "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
       "/LiveWindow/Ungrouped/Talon SRX [1]": "Motor Controller",
       "/LiveWindow/Ungrouped/Talon SRX [2]": "Motor Controller",
       "/LiveWindow/Ungrouped/Talon SRX [3]": "Motor Controller",
-      "/LiveWindow/Ungrouped/Talon SRX [4]": "Motor Controller"
+      "/LiveWindow/Ungrouped/Talon SRX [4]": "Motor Controller",
+      "/LiveWindow/Ungrouped/navX-Sensor[4]": "Gyro",
+      "/SmartDashboard/Field": "Field2d"
+    },
+    "windows": {
+      "/SmartDashboard/Field": {
+        "window": {
+          "visible": true
+        }
+      }
+    }
+  },
+  "NetworkTables": {
+    "LiveWindow": {
+      "open": true
+    },
+    "SmartDashboard": {
+      "Field": {
+        "open": true
+      },
+      "open": true
     }
   }
 }
