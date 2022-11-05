@@ -14,17 +14,19 @@ public class MoveForward extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        counter += 1;
+
         return (counter >= 2000);
     }
 
     @Override
     public void initialize() {
-        execute();
+
     }
 
     @Override
     public void execute() {
-        //driveSubsystem.forward();
+        counter += 1;
+        driveSubsystem.move(0);
+        System.out.println("Working...");
     }
 }

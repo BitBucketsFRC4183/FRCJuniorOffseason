@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 ;
 
+//your mom :P
 public class OdometrySubsystem extends SubsystemBase {
 
 
@@ -46,11 +47,9 @@ public class OdometrySubsystem extends SubsystemBase {
         SmartDashboard.putNumber("toprightpose", topright.getSelectedSensorPosition());
         SmartDashboard.putNumber("topleftpose", bottomleft.getSelectedSensorPosition());
         SmartDashboard.putNumber("topleftpose", bottomright.getSelectedSensorPosition());
-        SmartDashboard.putNumber("gyroangle", gyroangle);
 
+        System.out.println("test1");
 
-        SmartDashboard.putNumber("gyroangleactual", gyro.getAngle());
-        gyroangle = gyro.getAngle();
         if (gyroangle < 0 )
             gyroangle = 360 + gyroangle;
         if (gyroangle > 360)
