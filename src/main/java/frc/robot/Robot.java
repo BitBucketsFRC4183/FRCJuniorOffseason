@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.command.SpecialAuto;
 
 
 /**
@@ -24,7 +26,6 @@ public class Robot extends TimedRobot
 {
   ButtonSystem buttonSystem = new ButtonSystem();
   DriveSubsystem driveSubsystem = new DriveSubsystem(buttonSystem);
-  TestingDriveSubSystem testingDriveSubSystem = new TestingDriveSubSystem(buttonSystem);
 
   OdometrySubsystem odometrySubsystem = new OdometrySubsystem();
 
@@ -35,15 +36,27 @@ public class Robot extends TimedRobot
   }
 
   @Override
-  public void teleopPeriodic() {
-    driveSubsystem.periodic();
-    //testingDriveSubSystem.periodic();
+  public void simulationPeriodic() {
+    RobotSim.getInstance().run();
+  }
+
+  public ButtonSystem getButtonSystem() {
+    return buttonSystem;
   }
 
   @Override
-  public void teleopInit() {
-
-    driveSubsystem.init();
-    //testingDriveSubSystem.init();
+  public void autonomousInit() {
+    SpecialAuto specialAuto = new SpecialAuto(driveSubsystem);
+    specialAuto.schedule();
   }
+
+
+  @Override
+  public void robotPeriodic() {
+    CommandScheduler.getInstance().run();
+    driveSubsystem.periodic();
+    odometrySubsystem.periodic();
+    RobotSim.getInstance().run();
+  }
+
 }

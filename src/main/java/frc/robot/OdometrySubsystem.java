@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 ;
 
+//your mom :P
 public class OdometrySubsystem extends SubsystemBase {
 
 
@@ -33,9 +34,9 @@ public class OdometrySubsystem extends SubsystemBase {
 
     DifferentialDriveOdometry odometry;
 
-    Rotation2d rotation2d = new Rotation2d();
-
     AHRS gyro = new AHRS(SPI.Port.kMXP);
+
+    public final double SensorConversion = 0.00015585244;
 
 
     Field2d field = new Field2d();
@@ -46,23 +47,26 @@ public class OdometrySubsystem extends SubsystemBase {
         SmartDashboard.putNumber("toprightpose", topright.getSelectedSensorPosition());
         SmartDashboard.putNumber("topleftpose", bottomleft.getSelectedSensorPosition());
         SmartDashboard.putNumber("topleftpose", bottomright.getSelectedSensorPosition());
-        SmartDashboard.putNumber("gyroangle", gyroangle);
 
+        System.out.println("test1");
 
-        SmartDashboard.putNumber("gyroangleactual", gyro.getAngle());
-        gyroangle = gyro.getAngle();
         if (gyroangle < 0 )
             gyroangle = 360 + gyroangle;
         if (gyroangle > 360)
             gyroangle -= 360;
 
-        odometry.update(Rotation2d.fromDegrees(gyroangle), topleft.getSelectedSensorPosition(), topright.getSelectedSensorPosition());
+        odometry.update(Rotation2d.fromDegrees(gyroangle), topleft.getSelectedSensorPosition()*SensorConversion, topright.getSelectedSensorPosition()*SensorConversion);
         field.setRobotPose(odometry.getPoseMeters());
 
     }
 
 
     public void robotInit() {
+        if (Robot.isSimulation()) {
+            RobotSim.getInstance().addTalonSRX(topleft, .75, 5100, false);
+            RobotSim.getInstance().addTalonSRX(topright, .75, 5100, false);
+        }
+
         gyro.reset();
         topleft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         bottomleft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
@@ -73,7 +77,7 @@ public class OdometrySubsystem extends SubsystemBase {
         bottomleft.setSelectedSensorPosition(0);
         bottomright.setSelectedSensorPosition(0);
         odometry = new DifferentialDriveOdometry(gyro.getRotation2d() );
-
+        SmartDashboard.putData(field);
     }
 
 }
