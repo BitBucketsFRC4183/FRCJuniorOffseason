@@ -4,12 +4,14 @@
       "Talon SRX[1]": {
         "header": {
           "open": true
-        }
+        },
+        "name": "bottomRight"
       },
-      "Talon SRX[1]/Quad Encoder": {
+      "Talon SRX[2]": {
         "header": {
           "open": true
-        }
+        },
+        "name": "bottomLeft"
       },
       "Talon SRX[2]/Quad Encoder": {
         "header": {
@@ -19,7 +21,8 @@
       "Talon SRX[3]": {
         "header": {
           "open": true
-        }
+        },
+        "name": "topLeft"
       },
       "Talon SRX[3]/Quad Encoder": {
         "header": {
@@ -29,7 +32,8 @@
       "Talon SRX[4]": {
         "header": {
           "open": true
-        }
+        },
+        "name": "topRight"
       },
       "Talon SRX[4]/Quad Encoder": {
         "header": {
@@ -42,7 +46,8 @@
     "types": {
       "/FMSInfo": "FMSInfo",
       "/LiveWindow/DriveSubsystem": "Subsystem",
-      "/LiveWindow/OdometrySubsystem": "Subsystem",
+      "/LiveWindow/TestingDriveSubSystem": "Subsystem",
+      "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
       "/LiveWindow/Ungrouped/Talon SRX [1]": "Motor Controller",
       "/LiveWindow/Ungrouped/Talon SRX [2]": "Motor Controller",

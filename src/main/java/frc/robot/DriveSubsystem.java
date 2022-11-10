@@ -3,23 +3,29 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-
+// battery is at back
 public class DriveSubsystem extends SubsystemBase {
-    /*
-    motor device number 1 (bottomRight motor)
-    motor device number 2 (topRight motor)
-    motor device number 3 (topLeft motor)
-    motor device number 4 (bottomLeft motor)
-    */
 
     final ButtonSystem buttonSystem;
-    WPI_TalonSRX topLeft = new WPI_TalonSRX(3);
-    WPI_TalonSRX topRight = new WPI_TalonSRX(2);
-    WPI_TalonSRX bottomLeft = new WPI_TalonSRX(4);
+
+    WPI_TalonSRX topRight = new WPI_TalonSRX(4);
     WPI_TalonSRX bottomRight = new WPI_TalonSRX(1);
+
+    MotorControllerGroup right = new MotorControllerGroup(topRight, bottomRight);
+
+    WPI_TalonSRX topLeft = new WPI_TalonSRX(3);
+    WPI_TalonSRX bottomLeft = new WPI_TalonSRX(2);
+
+    MotorControllerGroup left = new MotorControllerGroup(topLeft, bottomLeft);
+
+
+    DifferentialDrive drive = new DifferentialDrive(left, right);
+
 
     public DriveSubsystem(ButtonSystem buttonSystem) {
         this.buttonSystem = buttonSystem;
@@ -28,13 +34,22 @@ public class DriveSubsystem extends SubsystemBase {
 
 
     public void init() {
-       // topLeft.setInverted(true);
-        //bottomLeft.setInverted(true);
+        topRight.setInverted(true);
+        bottomRight.setInverted(true);
     }
 
 
 
 
+/* drive button
+    public void periodic() {
+
+
+
+        // Arcade drive with a given forward and turn rate
+        drive.arcadeDrive(buttonSystem.getFB(), -buttonSystem.getLR());
+
+drive button*/
        public void move(double power)
     {
         topLeft.set(power);
@@ -42,23 +57,6 @@ public class DriveSubsystem extends SubsystemBase {
         bottomRight.set(power);
         bottomLeft.set(power);
     }
-
-    public void turnRight(double power)
-    {
-        topLeft.set(power);
-        topRight.set(power/1.5);
-        bottomRight.set(power/1.5);
-        bottomLeft.set(power);
-    }
-
-    public void turnLeft(double power)
-    {
-        topLeft.set(power/1.5);
-        topRight.set(power);
-        bottomRight.set(power);
-        bottomLeft.set(power/1.5);
-    }
-
 
 
 
