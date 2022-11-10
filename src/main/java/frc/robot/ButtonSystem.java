@@ -1,14 +1,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.button.Button;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class ButtonSystem {
-    //tezt 4
     Joystick joystick = new Joystick(0);
 
-/*drive button testing
     /**
      * getFB shifts between -1 and 1 (-1 = forward; 1 = forward)
      * @return forward backward axis
@@ -25,6 +23,7 @@ public class ButtonSystem {
     /**
      * getLR shifts between -1 and 1 (-1 = left; 1 = right)
      * @return getLR is on the right and makes robot move left and right by shifting left and right
+
     */
     /*public double getLR()
     
@@ -75,13 +74,10 @@ drive button testing*/
         }
     }
 
-    public boolean isResetGyroPressed() {
-        return true;
+    public boolean horn()
+    {
+        return joystick.getRawButtonPressed(3);
     }
-
-
-
-
 
 
 }

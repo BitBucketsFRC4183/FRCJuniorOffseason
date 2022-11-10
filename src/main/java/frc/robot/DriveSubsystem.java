@@ -1,20 +1,33 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.math.filter.SlewRateLimiter;
+import edu.wpi.first.networktables.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj2.command.button.NetworkButton;
+
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 
 // battery is at back
 public class DriveSubsystem extends SubsystemBase {
 
     final ButtonSystem buttonSystem;
 
+    SlewRateLimiter filterFB = new SlewRateLimiter(5); //high number -> accelerates faster
+    SlewRateLimiter filterLR = new SlewRateLimiter(5); //low number -> starts to not really move (0.1 makes it not move at all)
+
     WPI_TalonSRX topRight = new WPI_TalonSRX(4);
     WPI_TalonSRX bottomRight = new WPI_TalonSRX(1);
+
 
     MotorControllerGroup right = new MotorControllerGroup(topRight, bottomRight);
 
@@ -32,32 +45,45 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
 
+    public void playSound() {
+
+        NetworkTableInstance.getDefault().getTable("SOUND").getInstance().getEntry("play_slay").setDouble(1.0);
+
+
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("\"C:\\Users\\Bin Lin\\Documents\\Sound recordings\\slay.wav\"").getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch(Exception ex) {
+            System.out.println("Error with playing sound.");
+            ex.printStackTrace();
+        }
+    }
+
 
     public void init() {
         topRight.setInverted(true);
         bottomRight.setInverted(true);
+        //playSound();
     }
 
 
 
 
-/* drive button
     public void periodic() {
 
 
 
         // Arcade drive with a given forward and turn rate
-        drive.arcadeDrive(buttonSystem.getFB(), -buttonSystem.getLR());
+        drive.arcadeDrive(filterFB.calculate(buttonSystem.getFB()*0.75), filterLR.calculate(-buttonSystem.getLR()*0.75));
 
-drive button*/
-       public void move(double power)
-    {
-        topLeft.set(power);
-        topRight.set(power);
-        bottomRight.set(power);
-        bottomLeft.set(power);
-    }
+        if (buttonSystem.horn()) {
+            playSound();
+        }
 
+        // Tank drive that does not work
+        //drive.tankDrive(filterFB.calculate(buttonSystem.getFB()*0.75), filterLR.calculate(-buttonSystem.getLR()*0.75));
 
 
 
