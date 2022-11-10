@@ -56,6 +56,7 @@ public class Robot extends TimedRobot
     CommandScheduler.getInstance().run();
     driveSubsystem.periodic();
     odometrySubsystem.periodic();
+    RobotSim.getInstance().run();
   }
 
 }

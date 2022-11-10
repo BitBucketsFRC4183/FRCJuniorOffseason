@@ -21,6 +21,5 @@ public class MoveRight extends CommandBase{
     @Override
     public void execute() {
         System.out.println("Right has started");
-        driveSubsystem.turnRight(0);
     }
 }
