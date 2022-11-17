@@ -47,18 +47,6 @@ public class DriveSubsystem extends SubsystemBase {
 
     public void playSound() {
 
-        NetworkTableInstance.getDefault().getTable("SOUND").getInstance().getEntry("play_slay").setDouble(1.0);
-
-
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("\"C:\\Users\\Bin Lin\\Documents\\Sound recordings\\slay.wav\"").getAbsoluteFile());
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-        } catch(Exception ex) {
-            System.out.println("Error with playing sound.");
-            ex.printStackTrace();
-        }
     }
 
 
@@ -71,17 +59,16 @@ public class DriveSubsystem extends SubsystemBase {
 
 
 
+
+
     public void periodic() {
 
 
-
         // Arcade drive with a given forward and turn rate
-        drive.arcadeDrive(filterFB.calculate(buttonSystem.getFB()*0.75), filterLR.calculate(-buttonSystem.getLR()*0.75));
+        drive.arcadeDrive(filterFB.calculate(buttonSystem.getFB() * 0.75), filterLR.calculate(-buttonSystem.getLR() * 0.75));
 
-        if (buttonSystem.horn()) {
-            playSound();
-        }
 
+    }
         // Tank drive that does not work
         //drive.tankDrive(filterFB.calculate(buttonSystem.getFB()*0.75), filterLR.calculate(-buttonSystem.getLR()*0.75));
 

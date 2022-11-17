@@ -64,6 +64,24 @@ public class OdometrySubsystem extends SubsystemBase {
     public void robotInit() {
         if (Robot.isSimulation()) {
             RobotSim.getInstance().addTalonSRX(topleft, .75, 5100, false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             RobotSim.getInstance().addTalonSRX(topright, .75, 5100, false);
         }
 

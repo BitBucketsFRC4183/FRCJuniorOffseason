@@ -25,7 +25,6 @@ public class MoveForward extends CommandBase {
     @Override
     public void execute() {
         counter += 1;
-        driveSubsystem.move(1.0);
         System.out.println("Working...");
     }
 }
